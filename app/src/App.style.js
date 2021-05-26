@@ -1,8 +1,10 @@
-.App {
-  text-align: center;
-}
+import styled from 'styled-components'
 
-.App-header {
+export const App = styled.div`
+  text-align: center;
+`
+
+export const Header = styled.div`
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -11,4 +13,4 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+`

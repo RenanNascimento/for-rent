@@ -1,15 +1,11 @@
-import './App.css';
+import * as El from './App.style';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hi there
-        </p>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <El.App>
+    <El.Header>
+      Hi there
+    </El.Header>
+  </El.App>
+);
 
 export default App;
