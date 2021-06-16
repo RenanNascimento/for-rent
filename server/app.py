@@ -13,7 +13,7 @@ load_dotenv()
 
 @app.route('/predict', methods=['POST'])
 def predict():
-     clf = joblib.load('model/model.joblib')
+     clf = joblib.load('model.joblib')
      req = request.json
      data = json.loads(req['data'])
      arr = np.array(data)
@@ -22,5 +22,5 @@ def predict():
 
 if __name__ == '__main__':
     s3 = boto3.client('s3', aws_access_key_id=os.environ['S3_KEY'], aws_secret_access_key=os.environ['S3_SECRET'])
-    s3.download_file('for-rent-model', 'model.joblib', './model/model.joblib')
+    s3.download_file('for-rent-model', 'model.joblib', 'model.joblib')
     app.run(threaded=True, port=5000)
