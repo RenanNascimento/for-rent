@@ -21,7 +21,7 @@ def predict():
      data = json.loads(req['data'])
      arr = np.array(data)
      prediction = clf.predict(arr)
-     return jsonify({'prediction': list(prediction)})
+     return jsonify({'prediction': prediction})
 
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
