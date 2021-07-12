@@ -12,7 +12,7 @@ CORS(app)
 
 load_dotenv()
 s3 = boto3.client('s3', aws_access_key_id=os.environ['S3_KEY'], aws_secret_access_key=os.environ['S3_SECRET'])
-s3.download_file('for-rent-model', 'model.joblib', 'model.joblib')
+s3.download_file('for-rent', 'model.joblib', 'model.joblib')
 
 @app.route('/predict', methods=['POST'])
 def predict():
