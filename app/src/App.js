@@ -3,9 +3,12 @@ import * as El from './App.style';
 
 const App = () => (
   <El.App>
-    <El.Header>
-      <Predict />
-    </El.Header>
+    <El.Title>
+      Preencha os dados abaixo <br/>
+      e veja quanto será o valor <br/>
+      do aluguel
+    </El.Title>
+    <Predict />
   </El.App>
 );
 

@@ -1,16 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const App = styled.div`
-  text-align: center;
-`
-
-export const Header = styled.div`
-  background-color: #282c34;
+  background-color: #F3F6FC;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-`
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+  font-size: 48px;
+  color: #191F43;
+`;
