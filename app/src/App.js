@@ -1,4 +1,6 @@
-import Predict from './components/Predict/Predict'
+import React from 'react';
+import Form from './components/Form/Form';
+
 import * as El from './App.style';
 
 const App = () => (
@@ -8,7 +10,7 @@ const App = () => (
       e veja quanto será o valor <br/>
       do aluguel
     </El.Title>
-    <Predict />
+    <Form />
   </El.App>
 );
 
