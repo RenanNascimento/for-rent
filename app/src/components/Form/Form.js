@@ -11,7 +11,7 @@ const Form = () => {
     handleSubmit
   } = useForm();
 
-  const numToFloat = (money) => (
+  const numStrToFloat = (money) => (
     parseFloat(
       money
       .replace('R$ ', '')
@@ -21,14 +21,15 @@ const Form = () => {
   )
 
   const getPredict = async (dataToPredict) => {
-    fetch('https://for-rent.herokuapp.com/predict', {
+    // fetch('https://for-rent.herokuapp.com/predict', {
+    fetch('http://127.0.0.1:5000/predict', {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        data: `[[${dataToPredict.toString()}]]`
+        data: dataToPredict
       })
     })
     .then(res => res.json())
@@ -37,49 +38,44 @@ const Form = () => {
   }
 
   const onSubmit = (data) => {
-    const dataTransformed = {
-      area: numToFloat(data.area) || 0,
-      rooms: data.rooms === '' ? 0 : parseFloat(data.rooms),
-      bathroom: data.bathroom === '' ? 0 : parseFloat(data.bathroom),
-      parkingSpaces: data.parkingSpaces === '' ? 0 : parseFloat(data.parkingSpaces),
-      hoa: numToFloat(data.hoa) || 0,
-      floor: data.floor === '' ? 0 : parseFloat(data.floor),
-      rentAmount: numToFloat(data.rentAmount) || 0,
-      propertyTax: numToFloat(data.propertyTax) || 0,
-      fireInsurance: numToFloat(data.fireInsurance) || 0,
-      city1: data.city === '1' ? 1 : 0,
-      city2: data.city === '2' ? 1 : 0,
-      city3: data.city === '3' ? 1 : 0,
-      city4: data.city === '4' ? 1 : 0,
-      city5: data.city === '5' ? 1 : 0,
-      animal1: data.animal ? 1 : 0,
-      animal2: data.animal ? 0 : 1,
-      furniture1: data.furniture ? 1 : 0,
-      furniture2: data.furniture ? 0 : 1,
-    }
-
-    const dataStandardScaler = [
-      dataTransformed.area,
-      dataTransformed.rooms,
-      dataTransformed.bathroom,
-      dataTransformed.parkingSpaces,
-      dataTransformed.hoa,
-      dataTransformed.floor,
-      dataTransformed.rentAmount,
-      dataTransformed.propertyTax,
-      dataTransformed.fireInsurance,
-      dataTransformed.city1,
-      dataTransformed.city2,
-      dataTransformed.city3,
-      dataTransformed.city4,
-      dataTransformed.city5,
-      dataTransformed.animal1,
-      dataTransformed.animal2,
-      dataTransformed.furniture1,
-      dataTransformed.furniture2,
+    const numAttr = [
+      // area
+      numStrToFloat(data.area || '0'),
+      // rooms
+      data.rooms === '' ? 0 : parseFloat(data.rooms),
+      // bathroom
+      data.bathroom === '' ? 0 : parseFloat(data.bathroom),
+      // parkingSpaces
+      data.parkingSpaces === '' ? 0 : parseFloat(data.parkingSpaces),
+      // hoa
+      numStrToFloat(data.hoa || '0'),
+      // floor
+      data.floor === '' ? 0 : parseFloat(data.floor),
+      // rentAmount
+      numStrToFloat(data.rentAmount || '0'),
+      // propertyTax
+      numStrToFloat(data.propertyTax || '0'),
+      // fireInsurance
+      numStrToFloat(data.fireInsurance || '0'),
     ]
 
-    getPredict(dataStandardScaler)
+    const catAttr = [
+      // city
+      data.city,
+      // animal
+      data.animal,
+      // furniture
+      data.furniture
+    ]
+
+    const dataDict = {
+      numAttr,
+      catAttr
+    }
+
+    const dataStr = JSON.stringify(dataDict)
+
+    getPredict(dataStr)
   }
 
   return (
