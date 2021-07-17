@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './components/Form/Form';
+import Container from './components/Container/Container';
 
 import * as El from './App.style';
 
@@ -10,7 +10,7 @@ const App = () => (
       e veja quanto será o valor <br/>
       do aluguel
     </El.Title>
-    <Form />
+    <Container />
   </El.App>
 );
 
