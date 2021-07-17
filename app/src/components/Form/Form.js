@@ -1,39 +1,30 @@
-import React from 'react';
+import React from 'react'
 
-import NumberFormat from 'react-number-format';
-import { useForm } from 'react-hook-form';
+import NumberFormat from 'react-number-format'
+import { useForm } from 'react-hook-form'
 
-import * as El from './Form.style';
+import * as El from './Form.style'
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit
-  } = useForm();
+  const { register, handleSubmit } = useForm()
 
-  const numStrToFloat = (money) => (
-    parseFloat(
-      money
-      .replace('R$ ', '')
-      .replace(' m2', '')
-      .replace(',', '.')
-    )
-  )
+  const numStrToFloat = (money) =>
+    parseFloat(money.replace('R$ ', '').replace(' m2', '').replace(',', '.'))
 
   const getPredict = async (dataToPredict) => {
     fetch('https://for-rent.herokuapp.com/predict', {
       method: 'POST',
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        data: dataToPredict
-      })
+        data: dataToPredict,
+      }),
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err))
   }
 
   const onSubmit = (data) => {
@@ -64,12 +55,12 @@ const Form = () => {
       // animal
       data.animal,
       // furniture
-      data.furniture
+      data.furniture,
     ]
 
     const dataDict = {
       numAttr,
-      catAttr
+      catAttr,
     }
 
     const dataStr = JSON.stringify(dataDict)
@@ -81,153 +72,139 @@ const Form = () => {
     <El.Form onSubmit={handleSubmit(onSubmit)}>
       {/* city */}
       <El.Field>
-        <El.Label for='city'>Cidade</El.Label>
-        <El.Select
-          id='city'
-          {...register('city')}
-        >
-            <El.Option value='1'>São Paulo</El.Option>
-            <El.Option value='2'>Rio de Janeiro</El.Option>
-            <El.Option value='3'>Belo Horizonte</El.Option>
-            <El.Option value='4'>Porto Alegre</El.Option>
-            <El.Option value='5'>Campinas</El.Option>
+        <El.Label for="city">Cidade</El.Label>
+        <El.Select id="city" {...register('city')}>
+          <El.Option value="1">São Paulo</El.Option>
+          <El.Option value="2">Rio de Janeiro</El.Option>
+          <El.Option value="3">Belo Horizonte</El.Option>
+          <El.Option value="4">Porto Alegre</El.Option>
+          <El.Option value="5">Campinas</El.Option>
         </El.Select>
       </El.Field>
 
       {/* rooms */}
       <El.Field>
-        <El.Label for='rooms'>Qtde quartos</El.Label>
+        <El.Label for="rooms">Qtde quartos</El.Label>
         <El.Input
-          id='rooms'
-          type='number'
-          min='0'
-          step='1'
+          id="rooms"
+          type="number"
+          min="0"
+          step="1"
           {...register('rooms')}
         />
       </El.Field>
 
       {/* bathroom */}
       <El.Field>
-        <El.Label for='rooms'>Qtde banheiros</El.Label>
+        <El.Label for="rooms">Qtde banheiros</El.Label>
         <El.Input
-          id='bathroom'
-          type='number'
-          min='0'
-          step='1'
+          id="bathroom"
+          type="number"
+          min="0"
+          step="1"
           {...register('bathroom')}
         />
       </El.Field>
 
       {/* parking spaces */}
       <El.Field>
-      <El.Label for='rooms'>Qtde vagas estacionamento</El.Label>
-      <El.Input
-        id='parking-spaces'
-        type='number'
-        min='0'
-        step='1'
-        {...register('parkingSpaces')}
-      />
+        <El.Label for="rooms">Qtde vagas estacionamento</El.Label>
+        <El.Input
+          id="parking-spaces"
+          type="number"
+          min="0"
+          step="1"
+          {...register('parkingSpaces')}
+        />
       </El.Field>
 
       {/* floor */}
       <El.Field>
-      <El.Label for='floor'>Andar</El.Label>
-      <El.Input
-        id='floor'
-        type='number'
-        min='0'
-        step='1'
-        {...register('floor')}
-      />
+        <El.Label for="floor">Andar</El.Label>
+        <El.Input
+          id="floor"
+          type="number"
+          min="0"
+          step="1"
+          {...register('floor')}
+        />
       </El.Field>
 
       {/* area */}
       <El.Field>
-      <El.Label for='area'>Área</El.Label>
-      <NumberFormat
-        id='area'
-        allowNegative={false}
-        decimalSeparator=','
-        suffix=' m2'
-        {...register('area')}
-      />
+        <El.Label for="area">Área</El.Label>
+        <NumberFormat
+          id="area"
+          allowNegative={false}
+          decimalSeparator=","
+          suffix=" m2"
+          {...register('area')}
+        />
       </El.Field>
 
       {/* hoa */}
       <El.Field>
-      <El.Label for='hoa'>Condomínio</El.Label>
-      <NumberFormat
-        id='hoa'
-        allowNegative={false}
-        decimalSeparator=','
-        prefix='R$ '
-        {...register('hoa')}
-      />
+        <El.Label for="hoa">Condomínio</El.Label>
+        <NumberFormat
+          id="hoa"
+          allowNegative={false}
+          decimalSeparator=","
+          prefix="R$ "
+          {...register('hoa')}
+        />
       </El.Field>
 
       {/* rent amount */}
       <El.Field>
-      <El.Label for='rent-amount'>Aluguel</El.Label>
-      <NumberFormat
-        id='rent-amount'
-        allowNegative={false}
-        decimalSeparator=','
-        prefix='R$ '
-        {...register('rentAmount')}
-      />
+        <El.Label for="rent-amount">Aluguel</El.Label>
+        <NumberFormat
+          id="rent-amount"
+          allowNegative={false}
+          decimalSeparator=","
+          prefix="R$ "
+          {...register('rentAmount')}
+        />
       </El.Field>
-      
+
       {/* property tax */}
       <El.Field>
-      <El.Label for='property-tax'>IPTU</El.Label>
-      <NumberFormat
-        id='property-tax'
-        allowNegative={false}
-        decimalSeparator=','
-        prefix='R$ '
-        {...register('propertyTax')}
-      />
+        <El.Label for="property-tax">IPTU</El.Label>
+        <NumberFormat
+          id="property-tax"
+          allowNegative={false}
+          decimalSeparator=","
+          prefix="R$ "
+          {...register('propertyTax')}
+        />
       </El.Field>
 
       {/* fire insurance */}
       <El.Field>
-      <El.Label for='fire-insurance'>Seguro incêndio</El.Label>
-      <NumberFormat
-        id='fire-insurance'
-        allowNegative={false}
-        decimalSeparator=','
-        prefix='R$ '
-        {...register('fireInsurance')}
-      />
+        <El.Label for="fire-insurance">Seguro incêndio</El.Label>
+        <NumberFormat
+          id="fire-insurance"
+          allowNegative={false}
+          decimalSeparator=","
+          prefix="R$ "
+          {...register('fireInsurance')}
+        />
       </El.Field>
 
       {/* animal */}
       <El.Field>
-      <El.Label for='animal'>Aceita pet</El.Label>
-      <El.Input
-        id='animal'
-        type='checkbox'
-        {...register('animal')}
-      />
+        <El.Label for="animal">Aceita pet</El.Label>
+        <El.Input id="animal" type="checkbox" {...register('animal')} />
       </El.Field>
 
       {/* furniture */}
       <El.Field>
-      <El.Label for='furniture'>Mobiliado</El.Label>
-      <El.Input
-        id='furniture'
-        type='checkbox'
-        {...register('furniture')}
-      />
+        <El.Label for="furniture">Mobiliado</El.Label>
+        <El.Input id="furniture" type="checkbox" {...register('furniture')} />
       </El.Field>
 
-    <El.Button>
-      Click here
-    </El.Button>
-
+      <El.Button>Click here</El.Button>
     </El.Form>
   )
-};
+}
 
-export default Form;
+export default Form
