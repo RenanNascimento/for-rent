@@ -21,8 +21,7 @@ const Form = () => {
   )
 
   const getPredict = async (dataToPredict) => {
-    // fetch('https://for-rent.herokuapp.com/predict', {
-    fetch('http://127.0.0.1:5000/predict', {
+    fetch('https://for-rent.herokuapp.com/predict', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -81,20 +80,71 @@ const Form = () => {
   return (
     <El.Form onSubmit={handleSubmit(onSubmit)}>
       {/* city */}
-      <label for='city'>Cidade</label>
-      <select
-        id='city'
-        {...register('city')}
-      >
-          <option value='1'>São Paulo</option>
-          <option value='2'>Rio de Janeiro</option>
-          <option value='3'>Belo Horizonte</option>
-          <option value='4'>Porto Alegre</option>
-          <option value='5'>Campinas</option>
-      </select>
+      <El.Field>
+        <El.Label for='city'>Cidade</El.Label>
+        <El.Select
+          id='city'
+          {...register('city')}
+        >
+            <El.Option value='1'>São Paulo</El.Option>
+            <El.Option value='2'>Rio de Janeiro</El.Option>
+            <El.Option value='3'>Belo Horizonte</El.Option>
+            <El.Option value='4'>Porto Alegre</El.Option>
+            <El.Option value='5'>Campinas</El.Option>
+        </El.Select>
+      </El.Field>
+
+      {/* rooms */}
+      <El.Field>
+        <El.Label for='rooms'>Qtde quartos</El.Label>
+        <El.Input
+          id='rooms'
+          type='number'
+          min='0'
+          step='1'
+          {...register('rooms')}
+        />
+      </El.Field>
+
+      {/* bathroom */}
+      <El.Field>
+        <El.Label for='rooms'>Qtde banheiros</El.Label>
+        <El.Input
+          id='bathroom'
+          type='number'
+          min='0'
+          step='1'
+          {...register('bathroom')}
+        />
+      </El.Field>
+
+      {/* parking spaces */}
+      <El.Field>
+      <El.Label for='rooms'>Qtde vagas estacionamento</El.Label>
+      <El.Input
+        id='parking-spaces'
+        type='number'
+        min='0'
+        step='1'
+        {...register('parkingSpaces')}
+      />
+      </El.Field>
+
+      {/* floor */}
+      <El.Field>
+      <El.Label for='floor'>Andar</El.Label>
+      <El.Input
+        id='floor'
+        type='number'
+        min='0'
+        step='1'
+        {...register('floor')}
+      />
+      </El.Field>
 
       {/* area */}
-      <label for='area'>Área</label>
+      <El.Field>
+      <El.Label for='area'>Área</El.Label>
       <NumberFormat
         id='area'
         allowNegative={false}
@@ -102,49 +152,11 @@ const Form = () => {
         suffix=' m2'
         {...register('area')}
       />
-
-      {/* rooms */}
-      <label for='rooms'>Qtde quartos</label>
-      <input
-        id='rooms'
-        type='number'
-        min='0'
-        step='1'
-        {...register('rooms')}
-      />
-
-      {/* bathroom */}
-      <label for='rooms'>Qtde banheiros</label>
-      <input
-        id='bathroom'
-        type='number'
-        min='0'
-        step='1'
-        {...register('bathroom')}
-      />
-
-      {/* parking spaces */}
-      <label for='rooms'>Qtde vagas estacionamento</label>
-      <input
-        id='parking-spaces'
-        type='number'
-        min='0'
-        step='1'
-        {...register('parkingSpaces')}
-      />
-
-      {/* floor */}
-      <label for='floor'>Andar</label>
-      <input
-        id='floor'
-        type='number'
-        min='0'
-        step='1'
-        {...register('floor')}
-      />
+      </El.Field>
 
       {/* hoa */}
-      <label for='hoa'>Condomínio</label>
+      <El.Field>
+      <El.Label for='hoa'>Condomínio</El.Label>
       <NumberFormat
         id='hoa'
         allowNegative={false}
@@ -152,9 +164,11 @@ const Form = () => {
         prefix='R$ '
         {...register('hoa')}
       />
-      
+      </El.Field>
+
       {/* rent amount */}
-      <label for='rent-amount'>Aluguel</label>
+      <El.Field>
+      <El.Label for='rent-amount'>Aluguel</El.Label>
       <NumberFormat
         id='rent-amount'
         allowNegative={false}
@@ -162,9 +176,11 @@ const Form = () => {
         prefix='R$ '
         {...register('rentAmount')}
       />
-
+      </El.Field>
+      
       {/* property tax */}
-      <label for='property-tax'>IPTU</label>
+      <El.Field>
+      <El.Label for='property-tax'>IPTU</El.Label>
       <NumberFormat
         id='property-tax'
         allowNegative={false}
@@ -172,9 +188,11 @@ const Form = () => {
         prefix='R$ '
         {...register('propertyTax')}
       />
+      </El.Field>
 
       {/* fire insurance */}
-      <label for='fire-insurance'>Seguro incêndio</label>
+      <El.Field>
+      <El.Label for='fire-insurance'>Seguro incêndio</El.Label>
       <NumberFormat
         id='fire-insurance'
         allowNegative={false}
@@ -182,22 +200,27 @@ const Form = () => {
         prefix='R$ '
         {...register('fireInsurance')}
       />
+      </El.Field>
 
       {/* animal */}
-      <label for='animal'>Aceita pet</label>
-      <input
+      <El.Field>
+      <El.Label for='animal'>Aceita pet</El.Label>
+      <El.Input
         id='animal'
         type='checkbox'
         {...register('animal')}
       />
+      </El.Field>
 
       {/* furniture */}
-      <label for='furniture'>Mobiliado</label>
-      <input
+      <El.Field>
+      <El.Label for='furniture'>Mobiliado</El.Label>
+      <El.Input
         id='furniture'
         type='checkbox'
         {...register('furniture')}
       />
+      </El.Field>
 
     <El.Button>
       Click here
