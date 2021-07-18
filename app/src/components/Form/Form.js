@@ -86,6 +86,7 @@ const Form = ({ getPredict }) => {
               type="number"
               min="0"
               step="1"
+              required
               {...register('rooms')}
             />
           </El.Field>
@@ -98,6 +99,7 @@ const Form = ({ getPredict }) => {
               allowNegative={false}
               decimalSeparator=","
               suffix=" m2"
+              required
               {...register('area')}
             />
           </El.Field>
@@ -110,6 +112,7 @@ const Form = ({ getPredict }) => {
               allowNegative={false}
               decimalSeparator=","
               prefix="R$ "
+              required
               {...register('fireInsurance')}
             />
           </El.Field>
@@ -133,6 +136,7 @@ const Form = ({ getPredict }) => {
               type="number"
               min="0"
               step="1"
+              required
               {...register('bathroom')}
             />
           </El.Field>
@@ -145,6 +149,7 @@ const Form = ({ getPredict }) => {
               allowNegative={false}
               decimalSeparator=","
               prefix="R$ "
+              required
               {...register('hoa')}
             />
           </El.Field>
@@ -157,6 +162,7 @@ const Form = ({ getPredict }) => {
               allowNegative={false}
               decimalSeparator=","
               prefix="R$ "
+              required
               {...register('propertyTax')}
             />
           </El.Field>
@@ -180,6 +186,7 @@ const Form = ({ getPredict }) => {
               type="number"
               min="0"
               step="1"
+              required
               {...register('parkingSpaces')}
             />
           </El.Field>
@@ -192,6 +199,7 @@ const Form = ({ getPredict }) => {
               type="number"
               min="0"
               step="1"
+              required
               {...register('floor')}
             />
           </El.Field>
