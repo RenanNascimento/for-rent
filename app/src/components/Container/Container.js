@@ -9,8 +9,7 @@ const Container = () => {
   const [rentAmount, setRentAmount] = useState(0)
 
   const getPredict = async (data) => {
-    // fetch('https://for-rent.herokuapp.com/predict', {
-    fetch('http://127.0.0.1:5000/predict', {
+    fetch('https://for-rent.herokuapp.com/predict', {
       method: 'POST',
       mode: 'cors',
       headers: {
