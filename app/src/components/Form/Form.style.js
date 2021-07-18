@@ -62,6 +62,10 @@ export const Input = styled.input`
   font-size: 16px;
 `
 
+export const ButtonWrapper = styled.div`
+  margin-top: 24px;
+`
+
 export const Button = styled.button`
   cursor: pointer;
   font-size: 18px;
@@ -70,7 +74,6 @@ export const Button = styled.button`
   padding: 8px 16px;
   background-color: #191f43e6;
   color: white;
-  margin-top: 24px;
 
   &:hover {
     background-color: #191f43;

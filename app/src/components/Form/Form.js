@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Loading from '../Loading/Loading'
 
 import NumberFormat from 'react-number-format'
 import { useForm } from 'react-hook-form'
 
 import * as El from './Form.style'
 
-const Form = () => {
+const Form = ({ getPredict }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const { register, handleSubmit } = useForm()
 
   const numStrToFloat = (money) =>
@@ -13,23 +16,10 @@ const Form = () => {
 
   const strToBoolean = (value) => (value === 'true' ? true : false)
 
-  const getPredict = async (dataToPredict) => {
-    fetch('https://for-rent.herokuapp.com/predict', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        data: dataToPredict,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err))
-  }
-
   const onSubmit = (data) => {
+    console.log(isLoading)
+    setIsLoading(true)
+
     const numAttr = [
       // area
       numStrToFloat(data.area || '0'),
@@ -76,7 +66,7 @@ const Form = () => {
         <El.FieldGroup>
           {/* city */}
           <El.Field>
-            <El.Label for="city">Cidade</El.Label>
+            <El.Label htmlFor="city">Cidade</El.Label>
             <El.Select id="city" {...register('city')}>
               <El.Option value="1">São Paulo</El.Option>
               <El.Option value="2">Rio de Janeiro</El.Option>
@@ -88,7 +78,7 @@ const Form = () => {
 
           {/* rooms */}
           <El.Field>
-            <El.Label for="rooms">Qtde quartos</El.Label>
+            <El.Label htmlFor="rooms">Qtde quartos</El.Label>
             <El.Input
               id="rooms"
               type="number"
@@ -100,7 +90,7 @@ const Form = () => {
 
           {/* area */}
           <El.Field>
-            <El.Label for="area">Área</El.Label>
+            <El.Label htmlFor="area">Área</El.Label>
             <NumberFormat
               id="area"
               allowNegative={false}
@@ -112,7 +102,7 @@ const Form = () => {
 
           {/* fire insurance */}
           <El.Field>
-            <El.Label for="fire-insurance">Seguro incêndio</El.Label>
+            <El.Label htmlFor="fire-insurance">Seguro incêndio</El.Label>
             <NumberFormat
               id="fire-insurance"
               allowNegative={false}
@@ -126,7 +116,7 @@ const Form = () => {
         <El.FieldGroup>
           {/* pet */}
           <El.Field>
-            <El.Label for="pet">Aceita pet</El.Label>
+            <El.Label htmlFor="pet">Aceita pet</El.Label>
             <El.Select id="pet" {...register('pet')}>
               <El.Option value="true">Sim</El.Option>
               <El.Option value="false">Não</El.Option>
@@ -135,7 +125,7 @@ const Form = () => {
 
           {/* bathroom */}
           <El.Field>
-            <El.Label for="rooms">Qtde banheiros</El.Label>
+            <El.Label htmlFor="rooms">Qtde banheiros</El.Label>
             <El.Input
               id="bathroom"
               type="number"
@@ -147,7 +137,7 @@ const Form = () => {
 
           {/* hoa */}
           <El.Field>
-            <El.Label for="hoa">Condomínio</El.Label>
+            <El.Label htmlFor="hoa">Condomínio</El.Label>
             <NumberFormat
               id="hoa"
               allowNegative={false}
@@ -159,7 +149,7 @@ const Form = () => {
 
           {/* rent amount */}
           <El.Field>
-            <El.Label for="rent-amount">Aluguel</El.Label>
+            <El.Label htmlFor="rent-amount">Aluguel</El.Label>
             <NumberFormat
               id="rent-amount"
               allowNegative={false}
@@ -173,7 +163,7 @@ const Form = () => {
         <El.FieldGroup>
           {/* furniture */}
           <El.Field>
-            <El.Label for="furniture">Mobiliado</El.Label>
+            <El.Label htmlFor="furniture">Mobiliado</El.Label>
             <El.Select id="furniture" {...register('furniture')}>
               <El.Option value="false">Não</El.Option>
               <El.Option value="true">Sim</El.Option>
@@ -182,7 +172,7 @@ const Form = () => {
 
           {/* parking spaces */}
           <El.Field>
-            <El.Label for="rooms">Qtde vagas estac.</El.Label>
+            <El.Label htmlFor="rooms">Qtde vagas estac.</El.Label>
             <El.Input
               id="parking-spaces"
               type="number"
@@ -194,7 +184,7 @@ const Form = () => {
 
           {/* floor */}
           <El.Field>
-            <El.Label for="floor">Andar</El.Label>
+            <El.Label htmlFor="floor">Andar</El.Label>
             <El.Input
               id="floor"
               type="number"
@@ -206,7 +196,7 @@ const Form = () => {
 
           {/* property tax */}
           <El.Field>
-            <El.Label for="property-tax">IPTU</El.Label>
+            <El.Label htmlFor="property-tax">IPTU</El.Label>
             <NumberFormat
               id="property-tax"
               allowNegative={false}
@@ -217,9 +207,13 @@ const Form = () => {
           </El.Field>
         </El.FieldGroup>
       </El.Form>
-      <El.Button type="submit" form="form">
-        Mostrar valor!
-      </El.Button>
+      <El.ButtonWrapper>
+        {(isLoading && <Loading />) || (
+          <El.Button type="submit" form="form">
+            Mostrar valor!
+          </El.Button>
+        )}
+      </El.ButtonWrapper>
     </El.FormContainer>
   )
 }
