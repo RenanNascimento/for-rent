@@ -17,7 +17,6 @@ const Form = ({ getPredict }) => {
   const strToBoolean = (value) => (value === 'true' ? true : false)
 
   const onSubmit = (data) => {
-    console.log(isLoading)
     setIsLoading(true)
 
     const numAttr = [
