@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 0 52px;
+
+  @media (max-width: 640px) {
+    margin: 0 16px;
+  }
 `
 
 export const Container = styled.div`
@@ -11,10 +15,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 52px;
-`
 
-export const Title = styled.h1`
-  text-align: center;
-  font-size: 48px;
-  color: #191f43;
+  @media (max-width: 640px) {
+    margin: 0;
+  }
 `

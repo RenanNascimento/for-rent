@@ -4,6 +4,10 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 48px;
   color: #191f43;
+
+  @media (max-width: 640px) {
+    font-size: 24px;
+  }
 `
 
 export const Form = styled.form`
@@ -63,7 +67,7 @@ export const Input = styled.input`
 `
 
 export const ButtonWrapper = styled.div`
-  margin-top: 24px;
+  margin: 24px 0;
 `
 
 export const Button = styled.button`

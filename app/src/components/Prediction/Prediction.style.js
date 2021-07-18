@@ -1,5 +1,15 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 640px) {
+    height: 100vh;
+  }
+`
+
 export const Title = styled.h1`
   text-align: center;
   font-size: 36px;

@@ -9,11 +9,11 @@ const Prediction = ({ rentAmount, goBack }) => {
   })
 
   return (
-    <>
+    <El.Container>
       <El.Title>Valor do aluguel:</El.Title>
       <El.PredictValue>{formatter.format(rentAmount)}</El.PredictValue>
       <El.Button onClick={() => goBack()}>Voltar</El.Button>
-    </>
+    </El.Container>
   )
 }
 
