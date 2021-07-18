@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const Title = styled.h1`
+  text-align: center;
+  font-size: 48px;
+  color: #191f43;
 `
 
 export const Form = styled.form`

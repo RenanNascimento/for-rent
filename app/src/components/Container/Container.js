@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Form from '../Form/Form'
+import Prediction from '../Prediction/Prediction'
 
 import * as El from './Container.style'
 
@@ -8,7 +9,8 @@ const Container = () => {
   const [rentAmount, setRentAmount] = useState(0)
 
   const getPredict = async (data) => {
-    fetch('https://for-rent.herokuapp.com/predict', {
+    // fetch('https://for-rent.herokuapp.com/predict', {
+    fetch('http://127.0.0.1:5000/predict', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -29,15 +31,13 @@ const Container = () => {
   return (
     <El.Wrapper>
       <El.Container>
-        <El.Title>
-          Preencha os dados abaixo <br />
-          e veja quanto será o valor <br />
-          do aluguel
-        </El.Title>
         {isShowForm ? (
           <Form getPredict={(data) => getPredict(data)} />
         ) : (
-          <h1>{rentAmount}</h1>
+          <Prediction
+            rentAmount={rentAmount}
+            goBack={() => setIsShowForm(true)}
+          />
         )}
       </El.Container>
     </El.Wrapper>

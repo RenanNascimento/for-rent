@@ -32,8 +32,6 @@ const Form = ({ getPredict }) => {
       numStrToFloat(data.hoa || '0'),
       // floor
       data.floor === '' ? 0 : parseFloat(data.floor),
-      // rentAmount
-      numStrToFloat(data.rentAmount || '0'),
       // propertyTax
       numStrToFloat(data.propertyTax || '0'),
       // fireInsurance
@@ -60,7 +58,12 @@ const Form = ({ getPredict }) => {
   }
 
   return (
-    <El.FormContainer>
+    <>
+      <El.Title>
+        Preencha os dados abaixo <br />
+        e veja quanto será o valor <br />
+        do aluguel
+      </El.Title>
       <El.Form id="form" onSubmit={handleSubmit(onSubmit)}>
         <El.FieldGroup>
           {/* city */}
@@ -146,15 +149,15 @@ const Form = ({ getPredict }) => {
             />
           </El.Field>
 
-          {/* rent amount */}
+          {/* property tax */}
           <El.Field>
-            <El.Label htmlFor="rent-amount">Aluguel</El.Label>
+            <El.Label htmlFor="property-tax">IPTU</El.Label>
             <NumberFormat
-              id="rent-amount"
+              id="property-tax"
               allowNegative={false}
               decimalSeparator=","
               prefix="R$ "
-              {...register('rentAmount')}
+              {...register('propertyTax')}
             />
           </El.Field>
         </El.FieldGroup>
@@ -192,18 +195,6 @@ const Form = ({ getPredict }) => {
               {...register('floor')}
             />
           </El.Field>
-
-          {/* property tax */}
-          <El.Field>
-            <El.Label htmlFor="property-tax">IPTU</El.Label>
-            <NumberFormat
-              id="property-tax"
-              allowNegative={false}
-              decimalSeparator=","
-              prefix="R$ "
-              {...register('propertyTax')}
-            />
-          </El.Field>
         </El.FieldGroup>
       </El.Form>
       <El.ButtonWrapper>
@@ -213,7 +204,7 @@ const Form = ({ getPredict }) => {
           </El.Button>
         )}
       </El.ButtonWrapper>
-    </El.FormContainer>
+    </>
   )
 }
 
