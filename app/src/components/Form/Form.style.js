@@ -83,3 +83,25 @@ export const Button = styled.button`
     background-color: #191f43;
   }
 `
+
+export const AboutLabel = styled.p`
+  font-size: 24px;
+  color: #191f43;
+  margin-top: 56px;
+  margin-bottom: 0;
+
+  @media (max-width: 640px) {
+    margin-top: 32px;
+  }
+`
+
+export const About = styled.p`
+  text-align: center;
+  font-size: 16px;
+  color: #191f43;
+  max-width: 600px;
+
+  a {
+    text-decoration: none;
+  }
+`
