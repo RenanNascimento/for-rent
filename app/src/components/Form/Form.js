@@ -11,8 +11,7 @@ const Form = ({ getPredict }) => {
 
   const { register, handleSubmit } = useForm()
 
-  const numStrToFloat = (money) =>
-    parseFloat(money.replace('R$ ', '').replace(' m2', '').replace(',', '.'))
+  const numStrToFloat = (money) => parseFloat(money.replace(',', '.'))
 
   const strToBoolean = (value) => (value === 'true' ? true : false)
 
@@ -93,12 +92,13 @@ const Form = ({ getPredict }) => {
 
           {/* area */}
           <El.Field>
-            <El.Label htmlFor="area">Área</El.Label>
+            <El.Label htmlFor="area">
+              Área (m<sup>2</sup>)
+            </El.Label>
             <NumberFormat
               id="area"
               allowNegative={false}
               decimalSeparator=","
-              suffix=" m2"
               required
               {...register('area')}
             />
@@ -106,12 +106,11 @@ const Form = ({ getPredict }) => {
 
           {/* fire insurance */}
           <El.Field>
-            <El.Label htmlFor="fire-insurance">Seguro incêndio</El.Label>
+            <El.Label htmlFor="fire-insurance">Seguro incêndio (R$)</El.Label>
             <NumberFormat
               id="fire-insurance"
               allowNegative={false}
               decimalSeparator=","
-              prefix="R$ "
               required
               {...register('fireInsurance')}
             />
@@ -143,12 +142,11 @@ const Form = ({ getPredict }) => {
 
           {/* hoa */}
           <El.Field>
-            <El.Label htmlFor="hoa">Condomínio</El.Label>
+            <El.Label htmlFor="hoa">Condomínio (R$)</El.Label>
             <NumberFormat
               id="hoa"
               allowNegative={false}
               decimalSeparator=","
-              prefix="R$ "
               required
               {...register('hoa')}
             />
@@ -156,12 +154,11 @@ const Form = ({ getPredict }) => {
 
           {/* property tax */}
           <El.Field>
-            <El.Label htmlFor="property-tax">IPTU</El.Label>
+            <El.Label htmlFor="property-tax">IPTU (R$)</El.Label>
             <NumberFormat
               id="property-tax"
               allowNegative={false}
               decimalSeparator=","
-              prefix="R$ "
               required
               {...register('propertyTax')}
             />
