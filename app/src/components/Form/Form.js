@@ -205,7 +205,7 @@ const Form = ({ getPredict }) => {
       <El.ButtonWrapper>
         {(isLoading && <Loading />) || (
           <El.Button type="submit" form="form">
-            Mostrar valor!
+            Calcular valor
           </El.Button>
         )}
       </El.ButtonWrapper>
@@ -214,7 +214,7 @@ const Form = ({ getPredict }) => {
         Este projeto tem como objetivo interagir com um modelo de regressão
         criado para predizer o valor do alugel em algumas cidades do Brasil.
         Mais informações podem ser encontradas{' '}
-        <a href="https://github.com/RenanNascimento/for-rent" target="_blank">
+        <a href="https://github.com/RenanNascimento/for-rent" target="_blank" rel="noreferrer">
           aqui
         </a>
         .
