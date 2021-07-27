@@ -101,7 +101,13 @@ export const About = styled.p`
   color: #191f43;
   max-width: 600px;
 
+  @media (max-width: 640px) {
+    margin-bottom: 48px;
+  }
+
   a {
     text-decoration: none;
+    font-weight: bold;
+    color: #191f43;
   }
 `
